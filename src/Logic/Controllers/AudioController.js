@@ -204,7 +204,7 @@ const SOUNDS = {
     reload: {
         audio: RELOADSOUND,
         clone: true,
-        volume: 1,
+        volume: 0.7,
     },
     sand: {
         audio: SANDSOUND,
@@ -316,9 +316,6 @@ export class AudioController {
         }
         if (game.player.clock.active) {
             return 'clock';
-        }
-        if (game.state.slowmo) {
-            return 'slowmo';
         }
         if (game.state.boss) {
             return `boss${game.state.stage}`;
