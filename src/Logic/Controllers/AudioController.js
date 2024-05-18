@@ -114,7 +114,7 @@ const SOUNDS = {
         volume: 1,
         clone: true,
     },
-    empscream: {
+    empScream: {
         audio: EMPSCREAMSOUND,
         volume: 1,
     },
@@ -173,14 +173,14 @@ const SOUNDS = {
         audio: MIRAGESOUND,
         volume: 1,
     },
-    noammo: {
+    noAmmo: {
         audio: NOAMMOSOUND,
         volume: 1,
     },
     phase: {
         audio: PHASESOUND,
         clone: true,
-        volume: 1,
+        volume: 0.7,
     },
     phew: {
         audio: PHEWSOUND,
@@ -249,7 +249,7 @@ const SOUNDS = {
         clone: true,
         volume: 1,
     },
-    snipershot: {
+    sniperShot: {
         audio: SNIPERSHOTSOUND,
         volume: 1,
     },

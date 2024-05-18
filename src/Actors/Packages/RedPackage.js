@@ -44,7 +44,7 @@ export class RedPackage extends Enemy {
     }
 
     die() {
-        game.audiocontroller.playSound('snipershot');
+        game.audiocontroller.playSound('sniperShot');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         game.itemdropcontroller.drop();
         RedPackage.decrementCount();

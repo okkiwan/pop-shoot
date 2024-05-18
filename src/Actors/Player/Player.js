@@ -40,7 +40,7 @@ export class Player {
         game.effects.add(new Animation(game.player.x, game.player.y - 15, 'smoke_normal'));
         if (game.buffcontroller.mute || this.clock.active) {
             SceneUtils.shakeScreen(2, 0.25);
-            game.audiocontroller.playSound('noammo');
+            game.audiocontroller.playSound('noAmmo');
         } else {
             // audio
             game.audiocontroller.playSound('laser');
