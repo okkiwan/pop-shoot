@@ -6,7 +6,6 @@ import { EffectsPool } from './Effects/EffectsPool.js';
 import { GameState } from './Logic/State/GameState.js';
 import { AudioController } from './Logic/Controllers/AudioController.js';
 import { CashController } from './Logic/Controllers/CashController.js';
-import { EnemyController } from './Logic/Controllers/EnemyController.js';
 import { BuffController } from './Logic/Controllers/BuffController.js';
 import { WeatherController } from './Logic/Controllers/WeatherController.js';
 import { CollisionDetection } from './Logic/Motion/CollisionDetection.js';
@@ -35,7 +34,6 @@ export class Game {
         this.buffcontroller = new BuffController();
         this.audiocontroller = new AudioController();
         this.cashcontroller = new CashController();
-        this.enemycontroller = new EnemyController();
         this.slowmocontroller = new SlowmoController();
         this.weathercontroller = new WeatherController();
         this.inputdetection = new InputDetection();

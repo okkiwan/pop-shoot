@@ -9,6 +9,7 @@ import {
 import { Notification } from '../../Effects/Misc/Notification.js';
 import { Animation } from '../../Effects/Misc/Animation.js';
 import { SceneUtils } from '../../Scene/SceneUtils.js';
+import { EnemyController } from '../Controllers/EnemyController.js';
 
 const STAGESPRITES = [GLASSSTAGE1SPRITE, GLASSSTAGE2SPRITE, GLASSSTAGE3SPRITE, GLASSSTAGE4SPRITE, GLASSSTAGE5SPRITE];
 const NOTIFICATION_DURATION = 400; // in ticks. higher = longer
@@ -36,6 +37,7 @@ export class GameState {
         setInterval(() => {
             if (!this.paused && !this.over && !this.boss && !game.player.clock.active) {
                 this.time++;
+                EnemyController.checkEnemiesToSpawn();
             }
         }, 1000);
     }

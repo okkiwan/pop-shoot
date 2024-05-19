@@ -27,132 +27,92 @@ import { Diver } from '../../Actors/Enemies/Types/Diver.js';
 import { GreasyHarvey } from '../../Actors/Enemies/Bosses/GreasyHarvey.js';
 import { MetalEmperor } from '../../Actors/Enemies/Bosses/MetalEmperor.js';
 
+const enemies = [
+    // start: time at which enemy starts spawning
+    // end: time at which enemy stops spawning
+    // interval: interval at which enemy spawns
+
+    // STAGE 1
+    { type: GreenInvader, start: 4, end: 290, interval: 4 },
+    { type: GreenUfo, start: 17, end: 290, interval: 11 },
+    { type: Diver, start: 60, end: 290, interval: 60 },
+    { type: GreenTerror, start: 45, end: 290, interval: 45 },
+    { type: GreenPlacer, start: 60, end: 290, interval: 50 },
+    { type: GreenEmperor, start: 120, end: 290, interval: 55 },
+    { type: BlueInvader, start: 90, end: 290, interval: 35 },
+    { type: BlueUfo, start: 90, end: 290, interval: 40 },
+    // orange package
+    { type: OrangePackage, start: 180, end: 270, interval: 90 },
+    // boss
+    { type: GreasyHarvey, time: 300 },
+
+    // STAGE 2
+    { type: GreenInvader, start: 301, end: 590, interval: 4 },
+    { type: GreenUfo, start: 301, end: 590, interval: 11 },
+    { type: Diver, start: 360, end: 590, interval: 60 },
+    { type: BlueInvader, start: 317, end: 590, interval: 11 },
+    { type: BlueUfo, start: 330, end: 590, interval: 17 },
+    { type: BlueTerror, start: 365, end: 590, interval: 40 },
+    { type: BluePlacer, start: 360, end: 590, interval: 35 },
+    { type: BlueEmperor, start: 420, end: 590, interval: 45 },
+    { type: RedInvader, start: 390, end: 590, interval: 25 },
+    { type: RedUfo, start: 415, end: 590, interval: 25 },
+    // orange package
+    { type: OrangePackage, start: 360, end: 570, interval: 90 },
+    // boss
+    { type: MetalEmperor, time: 600 },
+
+    // STAGE 3
+    { type: BlueInvader, start: 601, end: 890, interval: 4 },
+    { type: BlueUfo, start: 601, end: 890, interval: 11 },
+    { type: Diver, start: 660, end: 890, interval: 60 },
+    { type: RedInvader, start: 605, end: 890, interval: 11 },
+    { type: RedUfo, start: 635, end: 890, interval: 14 },
+    { type: RedTerror, start: 740, end: 890, interval: 40 },
+    { type: RedPlacer, start: 685, end: 890, interval: 35 },
+    { type: RedEmperor, start: 730, end: 890, interval: 45 },
+    // orange package
+    { type: OrangePackage, start: 630, end: 870, interval: 90 },
+    // boss
+    { type: FamiliarSight, time: 900 },
+
+    // STAGE 4
+    { type: RedInvader, start: 905, end: 1185, interval: 4 },
+    { type: RedUfo, start: 910, end: 1185, interval: 11 },
+    { type: RedPlacer, start: 960, end: 1185, interval: 30 },
+    { type: RedEmperor, start: 990, end: 1185, interval: 40 },
+    { type: RedTerror, start: 1050, end: 1185, interval: 35 },
+    { type: Diver, start: 960, end: 1185, interval: 60 },
+    { type: BlackInvader, start: 1050, end: 1185, interval: 20 },
+    { type: YellowUfo, start: 1050, end: 1185, interval: 14 },
+    // orange package
+    { type: OrangePackage, start: 950, end: 1170, interval: 90 },
+    // boss
+    { type: Fk77, time: 1200 },
+
+    // STAGE 5
+    { type: BlackInvader, start: 1205, end: 1490, interval: 4 },
+    { type: Diver, start: 1260, end: 1490, interval: 60 },
+    { type: YellowUfo, start: 1210, end: 1490, interval: 11 },
+    { type: BlackPlacer, start: 1260, end: 1490, interval: 30 },
+    { type: BlackEmperor, start: 1290, end: 1490, interval: 40 },
+    { type: BlackTerror, start: 1320, end: 1490, interval: 35 },
+    // orange package
+    { type: OrangePackage, start: 1250, end: 1470, interval: 90 },
+    // boss
+    { type: Abuser, time: 1500 },
+];
+
 export class EnemyController {
-    constructor() {
-        this.enemiesToSpawn = [];
-        this.bossesToSpawn = [];
-
-        this.addEnemies();
-        this.spawnEnemies();
-        this.spawnBosses();
-    }
-
-    addEnemies() {
-        // type, start, end, interval
-
-        // STAGE 1
-        this.addEnemy(GreenInvader, 4, 290, 4);
-        this.addEnemy(GreenUfo, 17, 290, 11);
-        this.addEnemy(Diver, 60, 290, 60);
-        this.addEnemy(GreenTerror, 45, 290, 45);
-        this.addEnemy(GreenPlacer, 60, 290, 50);
-        this.addEnemy(GreenEmperor, 120, 290, 55);
-        this.addEnemy(BlueInvader, 90, 290, 35);
-        this.addEnemy(BlueUfo, 90, 290, 40);
-
-        // boss
-        this.addBoss(GreasyHarvey, 300);
-        // orange package
-        this.addEnemy(OrangePackage, 180, 270, 90);
-
-        // STAGE 2
-        this.addEnemy(GreenInvader, 301, 590, 4);
-        this.addEnemy(GreenUfo, 301, 590, 11);
-        this.addEnemy(Diver, 360, 590, 60);
-        this.addEnemy(BlueInvader, 317, 590, 11);
-        this.addEnemy(BlueUfo, 330, 590, 17);
-        this.addEnemy(BlueTerror, 365, 590, 40);
-        this.addEnemy(BluePlacer, 360, 590, 35);
-        this.addEnemy(BlueEmperor, 420, 590, 45);
-        this.addEnemy(RedInvader, 390, 590, 25);
-        this.addEnemy(RedUfo, 415, 590, 25);
-
-        // boss
-        this.addBoss(MetalEmperor, 600);
-        // orange package
-        this.addEnemy(OrangePackage, 360, 570, 90);
-
-        // STAGE 3
-        this.addEnemy(BlueInvader, 601, 890, 4);
-        this.addEnemy(BlueUfo, 601, 890, 11);
-        this.addEnemy(Diver, 660, 890, 60);
-        this.addEnemy(RedInvader, 605, 890, 11);
-        this.addEnemy(RedUfo, 635, 890, 14);
-        this.addEnemy(RedTerror, 740, 890, 40);
-        this.addEnemy(RedPlacer, 685, 890, 35);
-        this.addEnemy(RedEmperor, 730, 890, 45);
-
-        // boss
-        this.addBoss(FamiliarSight, 900);
-        // orange package
-        this.addEnemy(OrangePackage, 630, 870, 90);
-
-        // STAGE 4
-        this.addEnemy(RedInvader, 905, 1185, 4);
-        this.addEnemy(RedUfo, 910, 1185, 11);
-        this.addEnemy(RedPlacer, 960, 1185, 30);
-        this.addEnemy(RedEmperor, 990, 1185, 40);
-        this.addEnemy(RedTerror, 1050, 1185, 35);
-        this.addEnemy(Diver, 960, 1185, 60);
-        this.addEnemy(BlackInvader, 1050, 1185, 20);
-        this.addEnemy(YellowUfo, 1050, 1185, 14);
-        // boss
-        this.addBoss(Fk77, 1200);
-        // orange package
-        this.addEnemy(OrangePackage, 950, 1170, 90);
-
-        // STAGE 5
-        this.addEnemy(BlackInvader, 1205, 1490, 4);
-        this.addEnemy(Diver, 1260, 1490, 60);
-        this.addEnemy(YellowUfo, 1210, 1490, 11);
-        this.addEnemy(BlackPlacer, 1260, 1490, 30);
-        this.addEnemy(BlackEmperor, 1290, 1490, 40);
-        this.addEnemy(BlackTerror, 1320, 1490, 35);
-        // boss
-        this.addBoss(Abuser, 1500);
-        // orange package
-        this.addEnemy(OrangePackage, 1250, 1470, 90);
-    }
-
-    spawnEnemies() {
-        setInterval(() => {
-            this.enemiesToSpawn.forEach((enemyToSpawn) => {
-                if (this.shouldSpawn(enemyToSpawn)) {
-                    game.enemies.add(new enemyToSpawn.enemyType());
-                }
-            });
-        }, 1000);
-    }
-
-    spawnBosses() {
-        setInterval(() => {
-            this.bossesToSpawn.forEach((bossToSpawn) => {
-                if (bossToSpawn.spawnTime === game.state.time && !game.state.boss) {
-                    game.enemies.add(new bossToSpawn.bossType());
-                }
-            });
-        }, 1000);
-    }
-
-    addEnemy(enemyType, startTime, endTime, interval) {
-        this.enemiesToSpawn.push({
-            enemyType: enemyType,
-            startTime: startTime,
-            endTime: endTime,
-            interval: interval,
+    static checkEnemiesToSpawn() {
+        enemies.forEach((enemy) => {
+            if (this._shouldSpawn(enemy)) game.enemies.add(new enemy.type());
         });
     }
 
-    addBoss(bossType, spawnTime) {
-        this.bossesToSpawn.push({
-            bossType: bossType,
-            spawnTime: spawnTime,
-        });
-    }
-
-    shouldSpawn(enemy) {
+    static _shouldSpawn(enemy) {
         // enemy is in specified time bracket
-        const isInRange = game.state.time >= enemy.startTime && game.state.time <= enemy.endTime;
+        const isInTimeBracket = game.state.time >= enemy.start && game.state.time <= enemy.end;
 
         // game is not in boss/paused/clock state
         const isInState = !game.state.boss && !game.state.paused && !game.player.clock.active;
@@ -164,7 +124,14 @@ export class EnemyController {
         const isInSlowmoSpawntime =
             game.state.time % (enemy.interval / game.slowmocontroller.slowmorate) === 0 && game.state.slowmo;
 
-        // check for all conditions
-        return isInRange && isInState && (isInSpawnTime || isInSlowmoSpawntime);
+        // check for all standard enemy conditions
+        const isEnemyTime = isInTimeBracket && isInState && (isInSpawnTime || isInSlowmoSpawntime);
+
+        // check for all boss conditions:
+        // enemy is boss, gametime is boss time, and game is not already in boss state
+        const isBossTime = enemy.time === game.state.time && !game.state.boss;
+
+        // should enemy spawn?
+        return isEnemyTime || isBossTime;
     }
 }
