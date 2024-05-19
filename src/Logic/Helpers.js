@@ -27,7 +27,7 @@ export function getClosestEnemyTo(entity) {
         const dx = enemy.x - entity.x;
         const dy = enemy.y - entity.y;
 
-        const squared = Math.pow(dx, 2) + Math.pow(dy, 2);
+        const squared = dx * dx + dy * dy;
         const newDistance = Math.sqrt(squared);
 
         if (newDistance < distance) {
