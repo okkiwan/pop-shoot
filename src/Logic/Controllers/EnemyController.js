@@ -114,9 +114,6 @@ export class EnemyController {
         // enemy is in specified time bracket
         const isInTimeBracket = game.state.time >= enemy.start && game.state.time <= enemy.end;
 
-        // game is not in boss/paused/clock state
-        const isInState = !game.state.boss && !game.state.paused && !game.player.clock.active;
-
         // enemy's interval is reached (not in slowmo mode)
         const isInSpawnTime = game.state.time % enemy.interval === 0 && !game.state.slowmo;
 
@@ -125,7 +122,7 @@ export class EnemyController {
             game.state.time % (enemy.interval / game.slowmocontroller.slowmorate) === 0 && game.state.slowmo;
 
         // check for all standard enemy conditions
-        const isEnemyTime = isInTimeBracket && isInState && (isInSpawnTime || isInSlowmoSpawntime);
+        const isEnemyTime = isInTimeBracket && (isInSpawnTime || isInSlowmoSpawntime);
 
         // check for all boss conditions:
         // enemy is boss, gametime is boss time, and game is not already in boss state
