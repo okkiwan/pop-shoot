@@ -1,5 +1,4 @@
 import { game } from '../../../app.js';
-import { RedPackage } from '../../Actors/Packages/RedPackage.js';
 import { WHITESCREENSPRITE } from '../../Assets/Effects.js';
 import {
     CLOCKSPRITE,
@@ -140,8 +139,7 @@ export class HudGfx {
     }
 
     static drawShipmentNumber() {
-        const shipmentNo =
-            RedPackage.count > 0 || game.cashcontroller.shipmentnumber > 99 ? '!' : game.cashcontroller.shipmentnumber;
+        const shipmentNo = game.cashcontroller.shipmentnumber > 99 ? '!' : game.cashcontroller.shipmentnumber;
         game.scene.ctx.drawImage(GLASSNUMBERSPRITE, SNGLASS_X, SNGLASS_Y);
         SceneUtils.drawText(`SHIPMENT #`, SNTEXT_X, SNTEXT_Y, SNTEXT_FONT);
         SceneUtils.drawCenteredText(shipmentNo, SNNUMBER_X, SNNUMBER_Y, SNNUMBER_FONT);

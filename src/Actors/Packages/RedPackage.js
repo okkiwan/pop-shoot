@@ -35,7 +35,6 @@ export class RedPackage extends Enemy {
         this.hitsound = 'metal';
         game.audiocontroller.playSound('beepRed');
         SceneUtils.shakeScreen(3, 1);
-        RedPackage.incrementCount();
     }
 
     move() {
@@ -47,7 +46,6 @@ export class RedPackage extends Enemy {
         game.audiocontroller.playSound('sniperShot');
         game.effects.add(new Animation(this.x, this.y, 'explosion_normal'));
         game.itemdropcontroller.drop();
-        RedPackage.decrementCount();
         SceneUtils.flashScreen();
         SceneUtils.shakeScreen(3, 1);
         game.weathercontroller.toggleWeather();
@@ -56,19 +54,8 @@ export class RedPackage extends Enemy {
     // called by refresh() when redpackage has left the screen
     vanish() {
         game.audiocontroller.playSound('drain');
-        RedPackage.decrementCount();
         SceneUtils.shakeScreen(3, 1);
         SceneUtils.flashScreen();
         this.hp = 0;
-    }
-
-    static count = 0;
-
-    static incrementCount() {
-        RedPackage.count++;
-    }
-
-    static decrementCount() {
-        RedPackage.count--;
     }
 }
